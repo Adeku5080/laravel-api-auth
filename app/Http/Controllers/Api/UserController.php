@@ -4,6 +4,12 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use App\Models\User;
+
+
 
 class UserController extends Controller
 {
@@ -22,7 +28,7 @@ class UserController extends Controller
                     'password' => 'required',
                 ]);
 
-            if ($validator->fails()) {
+            if ($validateUser->fails()) {
                 return response()->json([
                     'status' => false,
                     'message' => 'validation error',
@@ -64,7 +70,7 @@ class UserController extends Controller
                     'password' => 'required',
                 ]);
 
-            if ($validator->fails()) {
+            if ($validateUser->fails()) {
                 return response()->json([
                     'status' => false,
                     'message' => 'validation error',
